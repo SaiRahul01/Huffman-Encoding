@@ -37,7 +37,7 @@ void display(Node *root, string s)
         cout << root->alphabet << ":" << s << endl;
 
         dict[root->alphabet] = s;
-        cout << dict[root->alphabet] << " ";
+        // cout << dict[root->alphabet] << " ";
     }
     display(root->left, s + "0");
     display(root->right, s + "1");
@@ -61,9 +61,7 @@ void compress(vector<char> &a, vector<int> &b, int len)
         pq.push(root);
     }
     mainroot = root;
-    cout << "Main Root\n";
-    cout << mainroot->alphabet << " " << mainroot->f << endl;
-    cout << "Main Root\n";
+  
 }
 
 void decToBinary(int n)
@@ -132,17 +130,13 @@ int main()
     helper(s);
 
     string compressedval = "";
-    cout << "Printing dict\n";
-    for (char x : s)
-    {
-        cout << dict[x] << "";
-        compressedval += dict[x];
-    }
-    cout << "Dict ended\n";
+
+  
+
 
     double gg = savedspace(8 * s.size(), 2 * compressedval.size() + 8 * charvector.size());
 
-    if (gg < 0)
+    if (gg <= 0)
     {
         cout << "Huffmann Encoding is not preferred for these type of messages\n";
         return 0;
@@ -156,6 +150,10 @@ int main()
         cout << s << " -> " << unencodedmessage << endl;
         cout << "After Compression\n";
         cout << s << " -> ";
+        for(char kl:s)
+        {
+            compressedval+=dict[kl];
+        }
         cout << compressedval << endl;
         cout << "\nSpace Saved: " << gg << "%";
     }
